@@ -9,6 +9,8 @@ class News extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'announce', 'content'];
+
     public function rubrics()
     {
         return $this->belongsToMany(Rubrics::class, 'news_rubrics');
