@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [NewsControler::class, 'index']);
 
 Route::get('/news', [NewsControler::class, 'list']);
 Route::get('/news/{id}', [NewsControler::class, 'view'])->where('id', '\d+');

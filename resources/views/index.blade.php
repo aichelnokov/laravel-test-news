@@ -7,6 +7,7 @@
                 </div>
                 <div class="panel-body">
                     <form action="/news/add" id="form-sync" method="POST">
+                        @csrf
                         <div class="input-group form-group">
                             <span class="input-group-addon">Title</span>
                             <input type="text" class="form-control" placeholder="type title here" maxlength="255" name="new-title">
@@ -21,12 +22,12 @@
                         </div>
                         <div class="input-group form-group">
                             <span class="input-group-addon">Rubrics</span>
-                            <select class="form-control" multiple="multiple" name="rubrics_ids" multiselect>
+                            <select class="form-control" multiple="multiple" name="rubrics_ids[]" multiselect>
                                 @include('includes.rubrics-tree', ['rubrics' => $rubrics, 'level' => 0])
                             </select>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-primary">Add without reload page</button>
+                            <button type="submit" class="btn btn-primary">Add with reload page</button>
                         </div>
                     </form>
                 </div>
@@ -51,12 +52,12 @@
                         </div>
                         <div class="input-group form-group">
                             <span class="input-group-addon">Rubrics</span>
-                            <select class="form-control" multiple="multiple" name="rubrics_ids" multiselect>
+                            <select class="form-control" multiple="multiple" name="rubrics_ids[]" multiselect>
                                 @include('includes.rubrics-tree', ['rubrics' => $rubrics, 'level' => 0])
                             </select>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-primary">Add with reload page</button>
+                            <button type="submit" class="btn btn-primary">Add without reload page</button>
                         </div>
                     </form>
                 </div>

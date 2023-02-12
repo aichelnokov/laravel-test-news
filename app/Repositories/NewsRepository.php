@@ -21,24 +21,25 @@ class NewsRepository implements RepositoriesInterface
     public function list(array $opts):Collection {
         $page = $opts['page'] ?? 0;
         $per_page = $opts['per_page'] ?? 10;
+        $orderBy = $opts['order_by'] ?? 'updated_at DESC';
 
         $news = News::select()
             ->with('rubrics', function($query) {
                 return $query->select(['id', 'name']);
-            })
-            ->skip($page * $per_page)
-            ->take($per_page);
+            });
         if (!empty($opts['search'])) {
-            $news
-                ->orWhere('announce', 'LIKE', '%' . $opts['search'] . '%')
-                ->orWhere('content', 'LIKE', '%' . $opts['search'] . '%')
-                ->orWhere('title', 'LIKE', '%' . $opts['search'] . '%');
+            $news->whereRaw('MATCH (title, announce, content) AGAINST (?)', [$opts['search']]);
         }
         $this->total = $news->count();
+        $news->orderByRaw($orderBy)
+            ->skip($page * $per_page)
+            ->take($per_page);
         return $news->get();
     }
 
     public function find(int $id): Model {
-        return News::find($id);
+        return News::where('id', '=', $id)->with('rubrics', function($query) {
+            return $query->select(['id', 'name']);
+        })->first();
     }
 } 

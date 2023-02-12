@@ -4,13 +4,13 @@
     </x-slot>
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <h3>{{ $model->title }}</h3>
+            <h3>{{ $result['model']->title }}</h3>
         </div>
         <div class="col-md-12 col-xs-12">
-            <p>{{ $model->content }}</p>
+            <p>{{ $result['model']->content }}</p>
         </div>
         <div class="col-md-12 col-xs-12 text-right">
-            Update at: {{ $model->updated_at }}
+            Update at: {{ $result['model']->updated_at }}
         </div>
         <div class="col-md-12 col-xs-12">
             <a href="{{ url()->previous() }}">Go back</a>
@@ -18,8 +18,7 @@
         <div class="col-md-12 col-xs-12">
             @if (!empty($result) && $result['status'] == 'ok')
             <div class="alert alert-success">
-                <b>A new record has been added!</b><br>
-                <a href="{{ url()->previous() }}">Go to list</a>.
+                <b>A new record has been added!</b>
             </div>    
             @else
             <div class="alert alert-warning">
