@@ -4,13 +4,10 @@
     </x-slot>
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <h3>{{ $result['model']->title }}</h3>
+            <h3>{{ $result['model']['title'] }}</h3>
         </div>
         <div class="col-md-12 col-xs-12">
-            <p>{{ $result['model']->content }}</p>
-        </div>
-        <div class="col-md-12 col-xs-12 text-right">
-            Update at: {{ $result['model']->updated_at }}
+            <p>{{ $result['model']['content'] }}</p>
         </div>
         <div class="col-md-12 col-xs-12">
             <a href="{{ url()->previous() }}">Go back</a>

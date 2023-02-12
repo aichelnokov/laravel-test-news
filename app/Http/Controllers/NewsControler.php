@@ -37,7 +37,7 @@ class NewsControler extends Controller
 
     function add(Request $request) {
         $rubrics_ids = $request->input('rubrics_ids', []);
-        $rubrics = Rubrics::where(['id' => $rubrics_ids])->get();
+        $rubrics = Rubrics::whereIn('id', $rubrics_ids)->get();
         
         $data = [
             'title' => filter_var($request->input('new-title', ''), 513), // FILTER_SANITIZE_STRING = 513
