@@ -19,8 +19,14 @@
                             <span class="input-group-addon">Content</span>
                             <textarea class="form-control" placeholder="type fulltext here" name="new-content"></textarea>
                         </div>
+                        <div class="input-group form-group">
+                            <span class="input-group-addon">Rubrics</span>
+                            <select class="form-control" multiple="multiple" name="rubrics_ids" multiselect>
+                                @include('includes.rubrics-tree', ['rubrics' => $rubrics, 'level' => 0])
+                            </select>
+                        </div>
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-primary">Add with reload page</button>
+                            <button type="submit" class="btn btn-primary">Add without reload page</button>
                         </div>
                     </form>
                 </div>
@@ -42,6 +48,12 @@
                         <div class="input-group form-group">
                             <span class="input-group-addon">Content</span>
                             <textarea class="form-control" placeholder="type fulltext here" name="new-content"></textarea>
+                        </div>
+                        <div class="input-group form-group">
+                            <span class="input-group-addon">Rubrics</span>
+                            <select class="form-control" multiple="multiple" name="rubrics_ids" multiselect>
+                                @include('includes.rubrics-tree', ['rubrics' => $rubrics, 'level' => 0])
+                            </select>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="submit" class="btn btn-primary">Add with reload page</button>
