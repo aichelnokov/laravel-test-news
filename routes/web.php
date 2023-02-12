@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RubricsControler;
+use App\Http\Controllers\NewsControler;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/news', [NewsControler::class, 'list']);
+Route::get('/news/{id}', [NewsControler::class, 'view'])->where('id', '\d+');
+Route::post('/news/add', [NewsControler::class, 'add']);
+Route::get('/rubrics/{id}', [RubricsControler::class, 'list'])->where('id', '\d+');
